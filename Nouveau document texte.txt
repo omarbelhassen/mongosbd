@@ -1,0 +1,74 @@
+> utiliser contact
+commuté sur contact db
+> db
+contact
+> db.createCollection ('liste de contacts')
+{"ok": 1}
+> afficher les collections
+liste de contacts
+> db.contactlist.insertMany ([
+... {nom: "ben_lahmar", prénom: "fares", email: "fares@gmail.com", âge: 26},
+... {nom: "kefi", prénom: "seif", email: "kefi@gamil.com", âge: 15},
+... {nom: "fatnassi", prénom: "sarra", email: "sarra.f@gmail.com", âge: 40},
+... {nom: "ben yahia", prénom: "rym", âge: 4},
+... {nom: "cherif", prénom: "sami", âge: 3},
+...])
+{
+        "reconnu": vrai,
+        "insertIds": [
+                ObjectId ("5fdd1bb16cdeccbd7a379f3a"),
+                ObjectId ("5fdd1bb16cdeccbd7a379f3b"),
+                ObjectId ("5fdd1bb16cdeccbd7a379f3c"),
+                ObjectId ("5fdd1bb16cdeccbd7a379f3d"),
+                ObjectId ("5fdd1bb16cdeccbd7a379f3e")
+        ]
+}
+> db.contactlist.find ()
+{"_id": ObjectId ("5fdd1bb16cdeccbd7a379f3a"), "last_name": "ben_lahmar", "first_name": "fares", "email": "fares@gmail.com", "age": 26}
+{"_id": ObjectId ("5fdd1bb16cdeccbd7a379f3b"), "last_name": "kefi", "first_name": "seif", "email": "kefi@gamil.com", "age": 15}
+{"_id": ObjectId ("5fdd1bb16cdeccbd7a379f3c"), "last_name": "fatnassi", "first_name": "sarra", "email": "sarra.f@gmail.com", "age": 40}
+{"_id": ObjectId ("5fdd1bb16cdeccbd7a379f3d"), "last_name": "ben yahia", "first_name": "rym", "age": 4}
+{"_id": ObjectId ("5fdd1bb16cdeccbd7a379f3e"), "last_name": "cherif", "first_name": "sami", "age": 3}
+
+> db.contactlist.find ({"_ id": ObjectId ("5fdd1bb16cdeccbd7a379f3a")})
+{"_id": ObjectId ("5fdd1bb16cdeccbd7a379f3a"), "last_name": "ben_lahmar", "first_name": "fares", "email": "fares@gmail.com", "age": 26}
+
+> db.contactlist.find ({âge: {$ gt: 18}})
+{"_id": ObjectId ("5fdd1bb16cdeccbd7a379f3a"), "last_name": "ben_lahmar", "first_name": "fares", "email": "fares@gmail.com", "age": 26}
+{"_id": ObjectId ("5fdd1bb16cdeccbd7a379f3c"), "last_name": "fatnassi", "first_name": "sarra", "email": "sarra.f@gmail.com", "age": 40}
+
+> db.contactlist.find ({age: {$ gt: 18}, "last_name": {$ regex: "ah"}})
+{"_id": ObjectId ("5fdd1bb16cdeccbd7a379f3a"), "last_name": "ben_lahmar", "first_name": "fares", "email": "fares@gmail.com", "age": 26}
+
+> db.contactlist.update ({last_name: "kefi"}, {$ set: {first_name: "Anis"}})
+WriteResult ({"nMatched": 1, "nUpserted": 0, "nModified": 1})
+
+> db.contactlist.find ({"_ id": ObjectId ("5fdd1bb16cdeccbd7a379f3b")})
+{"_id": ObjectId ("5fdd1bb16cdeccbd7a379f3b"), "last_name": "kefi", "first_name": "Anis", "email": "kefi@gamil.com", "age": 15}
+
+> db.contactlist.remove ({âge: {$ lt: 5}})
+WriteResult ({"nRemoved": 2})
+
+> db.contactlist.find (). pretty ()
+{
+        "_id": ObjectId ("5fdd1bb16cdeccbd7a379f3a"),
+        "last_name": "ben_lahmar",
+        "first_name": "tarifs",
+        "email": "fares@gmail.com",
+        "âge": 26
+}
+{
+        "_id": ObjectId ("5fdd1bb16cdeccbd7a379f3b"),
+        "last_name": "kefi",
+        "first_name": "Anis",
+        "email": "kefi@gamil.com",
+        "âge": 15
+}
+{
+        "_id": ObjectId ("5fdd1bb16cdeccbd7a379f3c"),
+        "last_name": "fatnassi",
+        "first_name": "sarra",
+        "email": "sarra.f@gmail.com",
+        "âge": 40
+}
+>
